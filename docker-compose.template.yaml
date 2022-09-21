@@ -1,0 +1,29 @@
+# This yaml is a template and cannot be used for docker-compose.
+version: '3'
+services:
+  min_pytorch:
+    image: min-pytorch:latest
+    build: 
+      context: dockerfiles/min-pytorch
+    # https://stackoverflow.com/questions/36249744/interactive-shell-using-docker-compose
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    ports:
+      - "unused_port_on_gpu_machine:8888"
+    # https://matsuand.github.io/docs.docker.jp.onthefly/compose/gpu-support/
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: device_ids_on_gpu_machie
+              capabilities: [gpu]
+# equivalent to: docker run --rm -it --gpus '"device=0"' min-pytorch:latest
+# For now, do not adapt to situation other than device=0
+
+# [1] find if specific port is already in use or not
+# netstat -tuplen | grep 8888
+# [2] show your uid
+# echo $UID
+# [3] get info about your uid
+# id 10471
