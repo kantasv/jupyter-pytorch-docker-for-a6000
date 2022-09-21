@@ -1,4 +1,7 @@
-Allows you to use jupyterlab remotely with RTX 6000 without complex complex configuration.
+Allows you to use jupyterlab remotely with RTX 6000 without complex complex configuration:)
+ 
+*Author: Kanta Yamaoka, Undergrad student of Osaka Prefecture University*
+
 
 This is for:
 - machine with Nvidia RTX A6000
